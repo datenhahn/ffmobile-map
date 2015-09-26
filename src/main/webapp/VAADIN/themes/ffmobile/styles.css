@@ -1,0 +1,40 @@
+.toolbar-overlay {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    z-index: 9999;
+    color: #000000;
+}
+
+.toolbar-overlay .v-button {
+    bottom: 0;
+    position: absolute;
+    right: 0;
+}
+
+.toolbar-overlay .v-button .v-icon {
+    font-size: 90px;
+}
+
+.leaflet-control-layers {
+    display: none;
+}
+
+.v-csslayout {
+    overflow: hidden;
+}
+
+.ffmobile-map {
+    height: 100%;
+    width: 100%;
+}
+
+.ffmobile-header {
+    font-size: 40px;
+    color: #dc0067;
+    font-weight: bold;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    z-index: 9999;
+}
