@@ -9,7 +9,7 @@ http://map.datenhahn.de
 .h2 Build it
 
 Clone the repository and execute
-  mvn clean install
+  mvn clean install -P compile-widgetsets
   
 .h2 Run it
 
