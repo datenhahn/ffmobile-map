@@ -1,15 +1,12 @@
 package de.datenhahn.ffmobile;
 
 import com.vaadin.addon.touchkit.settings.TouchKitSettings;
-import com.vaadin.server.DefaultDeploymentConfiguration;
-import com.vaadin.server.DeploymentConfiguration;
 import com.vaadin.spring.server.SpringVaadinServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Properties;
 
 /**
  * License: http://www.wtfpl.net
@@ -19,11 +16,6 @@ import java.util.Properties;
 public class SpringAwareTouchKitServlet extends SpringVaadinServlet {
 
     TouchKitSettings touchKitSettings;
-    @Override
-    protected DeploymentConfiguration createDeploymentConfiguration(Properties initParameters) {
-        initParameters.put("productionMode" , "true");
-        return new DefaultDeploymentConfiguration(this.getClass(), initParameters);
-    }
 
     @Override
     protected void servletInitialized() throws ServletException {
