@@ -18,5 +18,5 @@ public class FfMobileApplication {
     public VaadinServlet vaadinServlet() {
         return new SpringAwareTouchKitServlet();
     }
-
+    
 }

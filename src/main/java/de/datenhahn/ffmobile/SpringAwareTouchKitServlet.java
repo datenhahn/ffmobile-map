@@ -32,8 +32,7 @@ public class SpringAwareTouchKitServlet extends SpringVaadinServlet {
 
         touchKitSettings = new TouchKitSettings(getService());
         touchKitSettings.getWebAppSettings().setWebAppCapable(true);
-        String contextPath = getServletConfig().getServletContext()
-                .getContextPath();
+        String contextPath = getServletContext().getContextPath();
 
         if(!StringUtils.isEmpty(config.getBrandingLogoUrl())) {
             touchKitSettings.getApplicationIcons().addApplicationIcon(

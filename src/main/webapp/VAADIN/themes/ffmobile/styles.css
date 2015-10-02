@@ -12,8 +12,8 @@
     right: 0;
 }
 
-.v-button:active .v-button-wrap:after, .v-button:active .v-button-wrap, .v-button:active {
-    background: transparent;
+.v-button:active .v-button-wrap:after {
+    background: transparent !important;
 }
 
 .toolbar-overlay .v-button .v-icon {
