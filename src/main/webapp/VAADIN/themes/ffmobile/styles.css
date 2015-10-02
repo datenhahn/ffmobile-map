@@ -12,6 +12,10 @@
     right: 0;
 }
 
+.v-button:active .v-button-wrap:after, .v-button:active .v-button-wrap, .v-button:active {
+    background: transparent;
+}
+
 .toolbar-overlay .v-button .v-icon {
     font-size: 90px;
 }
@@ -29,6 +33,14 @@
     width: 100%;
 }
 
+.ffmuc-text {
+    position: absolute;
+    top: 0px;
+    right: 3.5em;
+    font-size: 150%;
+}
+
+
 .ffmobile-header {
     font-size: 40px;
     color: #dc0067;
@@ -37,4 +49,42 @@
     top: 0px;
     right: 10px;
     z-index: 9999;
+}
+
+.ffmobile-header img {
+    width: 3em;
+}
+
+@-webkit-keyframes color_change {
+    from {color: #ffb400; }
+    to { color: #009ee0; }
+}
+@-moz-keyframes color_change {
+    from {color: #ffb400; }
+    to { color: #009ee0; }
+}
+@-ms-keyframes color_change {
+    from {color: #ffb400; }
+    to { color: #009ee0; }
+}
+@-o-keyframes color_change {
+    from {color: #ffb400; }
+    to { color: #009ee0; }
+}
+@keyframes color_change {
+    from {color: #ffb400; }
+    to { color: #009ee0; }
+}
+.v-icon {
+    color: #009ee0;
+}
+
+
+
+.location-loading .v-icon {
+    -webkit-animation: color_change 700ms infinite alternate;
+    -moz-animation: color_change 700ms infinite alternate;
+    -ms-animation: color_change 700ms infinite alternate;
+    -o-animation: color_change 700ms infinite alternate;
+    animation: color_change 700ms infinite alternate;
 }

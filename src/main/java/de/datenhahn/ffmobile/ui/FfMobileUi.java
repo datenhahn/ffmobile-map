@@ -5,6 +5,7 @@ import com.vaadin.addon.touchkit.extensions.PositionCallback;
 import com.vaadin.addon.touchkit.gwt.client.vcom.Position;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Widgetset;
+import com.vaadin.server.ExternalResource;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.label.ContentMode;
@@ -13,7 +14,9 @@ import com.vaadin.ui.*;
 import com.vaadin.ui.themes.BaseTheme;
 import de.datenhahn.ffmobile.json.JsonStore;
 import de.datenhahn.ffmobile.ui.map.FreifunkMap;
+import de.datenhahn.ffmobile.util.Config;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
 @Theme("ffmobile")
 @SpringUI
@@ -23,6 +26,9 @@ public class FfMobileUi extends UI {
     public final static double MUENCHEN_LON = 11.5767131;
 
     @Autowired JsonStore jsonStore;
+
+    @Autowired
+    Config config;
 
     @Autowired
     FreifunkMap map;
@@ -62,7 +68,6 @@ public class FfMobileUi extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-
         CssLayout mapLayout = new CssLayout();
         mapLayout.setSizeFull();
 
@@ -82,7 +87,13 @@ public class FfMobileUi extends UI {
 
     private Component createHeaderOverlay() {
         CssLayout header = new CssLayout();
-        header.addComponent(new Label("Freifunk München Mobile Map"));
+        Label ffmucText = new Label(config.getBrandingText());
+        ffmucText.setSizeUndefined();
+        ffmucText.addStyleName("ffmuc-text");
+        header.addComponent(ffmucText);
+        if(!StringUtils.isEmpty(config.getBrandingLogoUrl())) {
+            header.addComponent(new Image(null, new ExternalResource(config.getBrandingLogoUrl())));
+        }
         header.addStyleName("ffmobile-header");
         return header;
     }
@@ -94,8 +105,8 @@ public class FfMobileUi extends UI {
         button = new Button(" ", new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                Geolocator.detect(new ShowMeOnMap());
                 button.addStyleName("location-loading");
+                Geolocator.detect(new ShowMeOnMap());
             }
         });
         button.addStyleName(BaseTheme.BUTTON_LINK);

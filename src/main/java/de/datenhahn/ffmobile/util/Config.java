@@ -12,6 +12,12 @@ public class Config {
     @Value("${ffmobile.jsonPath:}")
     private String nodesJsonPath;
 
+    @Value("${ffmobile.brandingText:}")
+    private String brandingText;
+
+    @Value("${ffmobile.brandingLogoUrl:}")
+    private String brandingLogoUrl;
+
     public String getNodesJsonUrl() {
         return nodesJsonUrl;
     }
@@ -26,5 +32,21 @@ public class Config {
 
     public void setNodesJsonPath(String nodesJsonPath) {
         this.nodesJsonPath = nodesJsonPath;
+    }
+
+    public String getBrandingText() {
+        return brandingText;
+    }
+
+    public void setBrandingText(String brandingText) {
+        this.brandingText = brandingText;
+    }
+
+    public String getBrandingLogoUrl() {
+        return brandingLogoUrl;
+    }
+
+    public void setBrandingLogoUrl(String brandingLogoUrl) {
+        this.brandingLogoUrl = brandingLogoUrl;
     }
 }
