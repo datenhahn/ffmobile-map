@@ -9,7 +9,7 @@ http://map.datenhahn.de
 ## Build it
 
 Clone the repository and execute
-  rm -rf target && mvn clean vaadin:clean vaadin:compile-theme install -P compile-widgetsets && mvn clean install
+  rm -rf target && mvn clean vaadin:clean vaadin:compile-theme install -P compile-widgetsets
   
 I separated the widgetset compile from the rest of the build job, so the last mvn install is to repackage the files.
   
