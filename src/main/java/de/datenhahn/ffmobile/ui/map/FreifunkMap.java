@@ -16,7 +16,7 @@ public class FreifunkMap {
     public final static int ZOOM_LEVEL_CITY = 13;
     public final static int ZOOM_LEVEL_DETAIL = 18;
 
-    private final static int ROUTER_RADIUS = 25;
+    private final static int ROUTER_RADIUS = 50;
     private final static int ME_RADIUS = 13;
 
     private LMap map;
