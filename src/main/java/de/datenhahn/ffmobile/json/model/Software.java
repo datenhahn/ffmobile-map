@@ -15,6 +15,9 @@ public class Software {
     @JsonProperty("fastd")
     FastdInfo fastdInfo;
 
+    @JsonProperty("status-page")
+    StatusPage statusPage;
+
     public AutoupdaterInfo getAutoupdaterInfo() {
         return autoupdaterInfo;
     }
@@ -45,5 +48,13 @@ public class Software {
 
     public void setFastdInfo(FastdInfo fastdInfo) {
         this.fastdInfo = fastdInfo;
+    }
+
+    public StatusPage getStatusPage() {
+        return statusPage;
+    }
+
+    public void setStatusPage(StatusPage statusPage) {
+        this.statusPage = statusPage;
     }
 }
