@@ -1,5 +1,6 @@
 package de.datenhahn.ffmobile.json;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vaadin.spring.annotation.SpringComponent;
 import de.datenhahn.ffmobile.json.model.NodesJson;
@@ -30,6 +31,7 @@ public class JsonService {
 
     public JsonService() {
         mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
     private InputStream getNodesJsonInputStream() {
