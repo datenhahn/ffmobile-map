@@ -44,7 +44,7 @@ public class NodesJson {
     public List<FreifunkNode> getOnlineRouters() {
         ArrayList<FreifunkNode> routers = new ArrayList<>();
         for(FreifunkNode node : nodes.values()) {
-            if(!node.getFlags().isGateway() && node.getFlags().isOnline() && hasWirelessMesh(node)) {
+            if(!node.getFlags().isGateway() && node.getFlags().isOnline()) {
                 routers.add(node);
             }
         }

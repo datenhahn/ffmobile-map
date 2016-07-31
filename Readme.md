@@ -24,17 +24,30 @@ Or run from a local json file
   
 The map will automatically update itself every 15 minutes.
 
+The default osm tile server should be only used for demo purposes. For production use I recommend setting up a
+caching reverseproxy for the tiles to take load from the official osm server. You can pass the tile url pattern
+like this.
+
+  java -jar ffmobile-map-0.0.1-SNAPSHOT.jar --ffmobile.jsonUrl=YOUR_JSON_URL -Dffmobile.tileUrlPattern="http://{s}.YOUR_TILE_SERVER/tiles/osmde/{z}/{x}/{y}.png" -Dffmobile.tileUrlSubDomains="a,b,c,d"
+
+
 ## Server setup
 
 In the `examples`-directory repository you find a simple bash script to start the application in background and some
 nginx-config to proxy the requests. The application starts always listening on all interfaces on port 8080 for now.
 I recommend blocking port 8080 from outside by iptables and setup the nginx-proxy on port 80 or 443 to serve the map.
 
-## Workarounds
+## Commandline Options
 
-* Currently the map does not check SSL certificate chain for json download urls, will be removed as soon as ffmuc certificate chain
-is fixed.
-* The jackson json parser library is configured to non strict parsing, as currently the nodes.json contains some wrong entries created by the alfred service (function: 0x.... entries)
+The following startup options are available:
+
+* ffmobile.jsonUrlUnsafeSsl : when this option is passed with any value (e.g. -Dffmobile.jsonUrlUnsafeSsl="true") the url reader will not check the certificate chain (good for incomplete ssl setups of the nods.json server). 
+* ffmobile.jsonUrl : the url to the nodes.json for download
+* ffmobile.jsonPath : you can also supply the json from the local file system (only use jsonUrl OR jsonPath, not both at once)
+* ffmobile.brandingText : a branding text which is shown in the upper right corner of the website
+* ffmobile.brandingLogoUrl : url to a branding logo which is shown in the upper right corner of the website
+* ffmobile.tileUrlPattern : Open Street Maps tileserver url pattern for leaflet (e.g. "http://{s}.YOUR_TILE_SERVER/tiles/osmde/{z}/{x}/{y}.png")
+* ffmobile.tileUrlSubDomains : leaflet url subdomains (e.g. "a,b,c,d")
 
 ## License
 

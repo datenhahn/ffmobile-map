@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Value;
 @SpringComponent
 public class Config {
 
+    @Value("${ffmobile.jsonUrlUnsafeSsl:}")
+    private String jsonUrlUnsafeSsl;
+
     @Value("${ffmobile.jsonUrl:}")
     private String nodesJsonUrl;
 
@@ -17,6 +20,12 @@ public class Config {
 
     @Value("${ffmobile.brandingLogoUrl:}")
     private String brandingLogoUrl;
+
+    @Value("${ffmobile.tileUrlPattern:}")
+    private String tileUrlPattern;
+
+    @Value("${ffmobile.tileUrlSubDomains:}")
+    private String tileUrlSubDomains;
 
     public String getNodesJsonUrl() {
         return nodesJsonUrl;
@@ -48,5 +57,29 @@ public class Config {
 
     public void setBrandingLogoUrl(String brandingLogoUrl) {
         this.brandingLogoUrl = brandingLogoUrl;
+    }
+
+    public String getTileUrlSubDomains() {
+        return tileUrlSubDomains;
+    }
+
+    public void setTileUrlSubDomains(String tileUrlSubDomains) {
+        this.tileUrlSubDomains = tileUrlSubDomains;
+    }
+
+    public String getTileUrlPattern() {
+        return tileUrlPattern;
+    }
+
+    public void setTileUrlPattern(String tileUrlPattern) {
+        this.tileUrlPattern = tileUrlPattern;
+    }
+
+    public String getJsonUrlUnsafeSsl() {
+        return jsonUrlUnsafeSsl;
+    }
+
+    public void setJsonUrlUnsafeSsl(String jsonUrlUnsafeSsl) {
+        this.jsonUrlUnsafeSsl = jsonUrlUnsafeSsl;
     }
 }

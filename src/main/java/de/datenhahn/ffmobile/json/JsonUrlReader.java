@@ -1,7 +1,12 @@
 package de.datenhahn.ffmobile.json;
 
 import com.vaadin.spring.annotation.SpringComponent;
+import de.datenhahn.ffmobile.util.Config;
+import de.datenhahn.ffmobile.util.SSLUtilities;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -15,6 +20,17 @@ import java.util.zip.InflaterInputStream;
 public class JsonUrlReader {
 
     private final static Logger LOGGER = Logger.getLogger(JsonUrlReader.class.getName());
+
+    @Autowired
+    private Config config;
+
+    @PostConstruct
+    public void init() {
+        if(StringUtils.isNotEmpty(config.getJsonUrlUnsafeSsl())) {
+            SSLUtilities.trustAllHostnames();
+            SSLUtilities.trustAllHttpsCertificates();
+        }
+    }
 
     public InputStream readUrl(String url) throws IOException {
         URL link = new URL(url);

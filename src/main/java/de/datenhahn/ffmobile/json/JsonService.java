@@ -48,7 +48,7 @@ public class JsonService {
         try {
             return mapper.readValue(getNodesJsonInputStream(), NodesJson.class);
         } catch (IOException e) {
-            String msg = "Could not parse nodes json " + e.getMessage();
+            String msg = "Could not parse nodes json: " + e.getMessage();
             LOGGER.severe(msg);
             throw new RuntimeException(msg);
         }
@@ -57,7 +57,7 @@ public class JsonService {
     private InputStream getNodesJsonFromUrl() {
         try {
             return urlReader.readUrl(config.getNodesJsonUrl());
-        } catch (IOException e) {
+        } catch (Exception e) {
             LOGGER.severe("Could not download json: " + e.getMessage());
         }
         return null;

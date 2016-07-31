@@ -3,8 +3,14 @@ package de.datenhahn.ffmobile.ui.map;
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.UIScope;
 import de.datenhahn.ffmobile.json.model.FreifunkNode;
+import de.datenhahn.ffmobile.util.Config;
 import de.datenhahn.ffmobile.util.LeafletTuningMap;
-import org.vaadin.addon.leaflet.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
+import org.vaadin.addon.leaflet.LCircle;
+import org.vaadin.addon.leaflet.LLayerGroup;
+import org.vaadin.addon.leaflet.LMap;
+import org.vaadin.addon.leaflet.LTileLayer;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -23,6 +29,9 @@ public class FreifunkMap {
     private LCircle me;
     private LLayerGroup nodesLayer = new LLayerGroup();
 
+    @Autowired
+    Config config;
+
     @PostConstruct
     private void initMap() {
         map = new LeafletTuningMap();
@@ -33,9 +42,18 @@ public class FreifunkMap {
         map.setCustomInitOption("touchZoom", true);
         map.setCustomInitOption("tap", false);
         map.addLayer(nodesLayer);
-
-        LTileLayer osmTiles = new LTileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png");
-        osmTiles.setSubDomains("a", "b", "c");
+        //
+        // http://otile1.mqcdn.com/tiles/1.0.0/osm
+        LTileLayer osmTiles;
+        if (StringUtils.isEmpty(config.getTileUrlPattern()) || StringUtils.isEmpty(config.getTileUrlSubDomains())) {
+            osmTiles = new LTileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png");
+            osmTiles.setSubDomains("a", "b", "c");
+        } else {
+            osmTiles = new LTileLayer(config.getTileUrlPattern());
+            String[] subdomains = config.getTileUrlSubDomains().split(",");
+            osmTiles.setSubDomains(subdomains);
+        }
+        //LTileLayer osmTiles = new LTileLayer("http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.jpg");
 
         map.addBaseLayer(osmTiles, "OSM");
     }
