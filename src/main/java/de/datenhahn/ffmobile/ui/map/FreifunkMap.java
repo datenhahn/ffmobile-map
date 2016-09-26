@@ -11,6 +11,7 @@ import org.vaadin.addon.leaflet.LCircle;
 import org.vaadin.addon.leaflet.LLayerGroup;
 import org.vaadin.addon.leaflet.LMap;
 import org.vaadin.addon.leaflet.LTileLayer;
+import org.vaadin.addon.leaflet.markercluster.LMarkerClusterGroup;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -20,14 +21,14 @@ import java.util.List;
 public class FreifunkMap {
 
     public final static int ZOOM_LEVEL_CITY = 13;
-    public final static int ZOOM_LEVEL_DETAIL = 18;
+    public final static int ZOOM_LEVEL_DETAIL = 16;
 
     private final static int ROUTER_RADIUS = 50;
     private final static int ME_RADIUS = 13;
 
     private LMap map;
     private LCircle me;
-    private LLayerGroup nodesLayer = new LLayerGroup();
+    private LMarkerClusterGroup mcg = new LMarkerClusterGroup();
 
     @Autowired
     Config config;
@@ -38,10 +39,13 @@ public class FreifunkMap {
         map.addStyleName("ffmobile-map");
         map.setCustomInitOption("inertia", true);
         map.setCustomInitOption("dragging", true);
-
+        map.setMaxZoom(18);
         map.setCustomInitOption("touchZoom", true);
         map.setCustomInitOption("tap", false);
-        map.addLayer(nodesLayer);
+
+        mcg.setDisableClusteringAtZoom(14);
+        map.addComponent(mcg);
+
         //
         // http://otile1.mqcdn.com/tiles/1.0.0/osm
         LTileLayer osmTiles;
@@ -106,12 +110,12 @@ public class FreifunkMap {
 
     public void setNodes(List<FreifunkNode> nodes) {
 
-        nodesLayer.removeAllComponents();
+        mcg.removeAllComponents();
 
         for (FreifunkNode node : nodes) {
             LCircle nodeCircle = createNode(node);
             if (nodeCircle != null) {
-                nodesLayer.addComponent(nodeCircle);
+                mcg.addComponent(nodeCircle);
             }
         }
     }

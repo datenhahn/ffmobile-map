@@ -6,10 +6,10 @@
     <inherits name="com.vaadin.DefaultWidgetSet"/>
     <inherits name="com.vaadin.addon.touchkit.gwt.TouchKitWidgetSet" />
     <inherits name="org.vaadin.addon.leaflet.Widgetset" />
+    <inherits name="org.vaadin.addon.leaflet.markercluster.Widgetset" />
 
     <generate-with class="de.datenhahn.ffmobile.OptimizedConnectorBundleLoaderFactory">
         <when-type-assignable class="com.vaadin.client.metadata.ConnectorBundleLoader" />
     </generate-with>
-
 </module>
 
