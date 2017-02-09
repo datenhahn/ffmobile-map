@@ -13,11 +13,11 @@ public class NodesJson {
     String version;
 
     private static final Logger logger = LoggerFactory.getLogger(NodesJson.class);
-    Map<String, FreifunkNode> nodes;
+    List <FreifunkNode> nodes;
 
     public List<FreifunkNode> getRouters() {
         ArrayList<FreifunkNode> routers = new ArrayList<>();
-        for(FreifunkNode node : nodes.values()) {
+        for(FreifunkNode node : nodes) {
             if(!node.getFlags().isGateway()) {
                 routers.add(node);
             }
@@ -43,7 +43,7 @@ public class NodesJson {
 
     public List<FreifunkNode> getOnlineRouters() {
         ArrayList<FreifunkNode> routers = new ArrayList<>();
-        for(FreifunkNode node : nodes.values()) {
+        for(FreifunkNode node : nodes) {
             if(!node.getFlags().isGateway() && node.getFlags().isOnline()) {
                 routers.add(node);
             }
@@ -53,7 +53,7 @@ public class NodesJson {
 
     public List<FreifunkNode> getGateways() {
         ArrayList<FreifunkNode> gateways = new ArrayList<>();
-        for(FreifunkNode node : nodes.values()) {
+        for(FreifunkNode node : nodes) {
             if(node.getFlags().isGateway()) {
                 gateways.add(node);
             }
@@ -77,11 +77,11 @@ public class NodesJson {
         this.version = version;
     }
 
-    public Map<String, FreifunkNode> getNodes() {
+    public List<FreifunkNode> getNodes() {
         return nodes;
     }
 
-    public void setNodes(Map<String, FreifunkNode> nodes) {
+    public void setNodes(List<FreifunkNode> nodes) {
         this.nodes = nodes;
     }
 }
